@@ -11,6 +11,7 @@ const ShowCollection = () => {
   // send only user_id
   const user_id = useSelector((state) => state.user.user_id);
   const [collections, setCollections] = useState([]);
+  const collectionsArr = [];
 
   useEffect(() => {
     //fetch all the collections of the logged in user
@@ -28,19 +29,21 @@ const ShowCollection = () => {
       .then((res) => res.json())
       .then((data) => {
         setCollections(data);
+
+        for (let i = 0; i < collections.length; i++) {
+          collectionsArr.push(
+            <button className="collection-title">{collections[i].title}</button>
+          );
+        }
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const collectionsArr = [];
-  for (let i = 0; i < collections.length; i++) {
-    collectionsArr.push(
-      <p className="collection-title">{collections[i].title}</p>
-    );
-  }
-  // console.log('collectionsArr with p tag: ', collectionsArr);
-
-  return <div className="collection-list-container">{collectionsArr}</div>;
+  return (
+    <>
+      <div className="collection-list-container">{collectionsArr}</div>
+    </>
+  );
 };
 
 export default ShowCollection;
