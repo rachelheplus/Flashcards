@@ -6,16 +6,23 @@ import Card from './Card';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
+import { useSelector } from 'react-redux';
 
 const Home = () => {
   const [arrCards, setArrCards] = useState([]);
+  const collection_id = useSelector((state) => {
+    // console.log('is colleciton_id right?',  state.collection);
+    return state.collection.collection_id;
+  })
+  
 
   useEffect(() => {
     // we cannot use async/await in useEffect without wrapping in outer function
     const response = axios({
-      method: 'get',
+      method: 'post',
       withCredentials: true,
-      url: 'http://localhost:8080/api/cards',
+      data: {collection_id},
+      url: 'http://localhost:8080/api/collections/cards',
     }).then((res) => {
       setArrCards(res.data);
     });

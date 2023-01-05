@@ -32,7 +32,7 @@ const CreateCollection = () => {
     fetch(url, create)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         dispatch(setCollectionArr([...collectionArr, data]));
       })
       .catch((err) => console.log(err));
