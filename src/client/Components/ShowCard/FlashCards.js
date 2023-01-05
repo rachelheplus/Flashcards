@@ -52,9 +52,9 @@ const FlashCard = () => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card-library-container">
       <div id="card-title-wrapper" className="card-title-wrapper">
-        <h1 className="">{cardData.title ?? 'No Title'}</h1>
+        <h1 className="card-title">{cardData.title ?? 'No Title'}</h1>
       </div>
 
       <div

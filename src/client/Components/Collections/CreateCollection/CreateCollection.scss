@@ -13,7 +13,7 @@
 
   .create-collection-input {
     label {
-      font-size: 1.5em;
+      font-size: 1.25em;
       font-weight: 500;
       letter-spacing: 0.1em;
     }
@@ -37,3 +37,77 @@
     font-size: 1em;
   }
 }
+
+@media screen and (min-width: 425px) {
+  .create-collection-container {
+    .create-collection-input {
+      label {
+        font-size: 1.5em;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+      }
+
+      .create-collection-title {
+        height: 3em;
+        width: 18em;
+        border: none;
+        border-radius: 0.5em;
+        margin-left: 0.5em;
+        font-size: 1em;
+        text-align: center;
+      }
+
+      .create-collection-title:focus {
+        outline: 3px solid var(--light-bg);
+      }
+    }
+    
+    .collection-button {
+      margin-top: 1.5em;
+      font-size: 1.2em;
+      padding: 0.5em 2.5em;
+    }
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .create-collection-container {
+    .create-collection-input {
+      label {
+        background-color: var(--p-light-bg);
+        font-size: 1.75em;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+      }
+
+      .create-collection-title {
+        height: 3em;
+        width: 18em;
+        border: none;
+        border-radius: 0.5em;
+        margin-left: 1em;
+        font-size: 1em;
+        text-align: center;
+      }
+
+      .create-collection-title:focus {
+        outline: 3px solid var(--light-bg);
+      }
+    }
+    
+    .collection-button {
+      margin-top: 1.5em;
+      font-size: 1.5em;
+      padding: 0.5em 2.5em;
+    }
+  }
+}
+// @media screen and (min-width: 625px) {
+  
+// }
+// @media screen and (min-width: 700px) {
+  
+// }
+// @media screen and (min-width: 900px) {
+  
+// }

@@ -19,27 +19,28 @@ const CreateCard = () => {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-    }).then(() => navigate('/library'));
+    }).then(() => navigate('/cards'));
   }
 
   return (
     <div className="new-card-container">
+      <h3>Create a New Card</h3>
       <input
-        className="card-title"
+        className="create-card-title"
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Enter Card Title Here"
       ></input>
       <input
-        className="card-front"
+        className="create-card-front"
         onChange={(e) => setFront(e.target.value)}
         placeholder="Enter Question Here"
       ></input>
       <input
-        className="card-back"
+        className="create-card-back"
         onChange={(e) => setback(e.target.value)}
         placeholder="Enter Answer Here"
       ></input>
-      
+
       <button className="card-button add-card-btn" onClick={cb}>
         Add Card <span>&#43;</span>
       </button>

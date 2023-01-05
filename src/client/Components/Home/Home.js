@@ -1,14 +1,15 @@
 import './Home.scss';
 
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import Card from './Card';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
 const Home = () => {
   const [arrCards, setArrCards] = useState([]);
+  // const navigate = useNavigate();
 
   useEffect(() => {
     // we cannot use async/await in useEffect without wrapping in outer function

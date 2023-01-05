@@ -1,43 +1,49 @@
-/* 
-.backgroundGrey {
-    background-color: #525252;
-    margin: 10px;
-    color: white;
-    padding: 10px;
-    font-family: 'Roboto', sans-serif;
-    border-color: white;
-    border-width: 2px;
-    border-style: solid;
-    width:400px;
-    height: 200px;
-}
-
-.title {
-    font-size: 24px;
-    text-decoration: none;
-    
-}
-
-.front {
-    font-size: 18px;
-}
- */
-
 .flashcard-container {
-    background-color: var(--green-bg);
+    background-color: var(--dark-bg);
+    border-radius: 2em;
+    padding: 1.5em 0;
+    min-width: 350px;
+    min-height: 90px;
+    text-align: center;
     color: var(--primary-color);
-    padding: 0.5em;
     font-family: 'Roboto', sans-serif;
-    border: 2px solid var(--light-bg);
-    width:350px;
-    height: 100px;
-
+    
     .flashcard-title {
-        font-size: 24px;
-        text-decoration: none;
+        font-size: 1.5em;
     }
 
     .flashcard-front {
-        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--hex-green-bg);
+        border-radius: .75em;
+        font-size: 1.1em;
+
+        padding: 0.5em;
+        margin: 1em;
+        margin-bottom: 0;
+        height: 50px;
     }
 }
+
+@media screen and (min-width: 425px) {
+    .flashcard-container {
+        min-width: 400px;
+        min-height: 90px;
+    }
+}
+
+@media screen and (min-width: 550px) {
+
+}
+
+// @media screen and (min-width: 625px) {
+  
+// }
+// @media screen and (min-width: 700px) {
+  
+// }
+// @media screen and (min-width: 900px) {
+  
+// }
