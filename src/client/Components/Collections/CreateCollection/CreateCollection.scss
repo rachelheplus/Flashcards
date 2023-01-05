@@ -1,0 +1,48 @@
+// #collectionInput {
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: row;
+//   align-items: center;
+// }
+
+// #addCollectionBtn span {
+//   font-weight: bolder;
+//   font-size: 1.2rem;
+// }
+
+
+.create-collection-container {
+  background-color: var(--green-bg);
+  border-radius: 1em;
+  margin: 2em 1em;
+  padding: 1em;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .create-collection-input {
+    label {
+      font-size: 1.5em;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+  }
+
+
+  
+
+  .create-collection-title {
+    height: 3em;
+    width: 15em;
+    border: none;
+    border-radius: 0.5em;
+    margin-left: 1em;
+    text-align: center;
+  }
+  
+  .collection-button {
+    margin-top: 2em;
+  }
+}

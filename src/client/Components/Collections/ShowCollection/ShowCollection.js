@@ -36,12 +36,12 @@ const ShowCollection = () => {
   const collectionsArr = [];
   for (let i = 0; i < collections.length; i++) {
     collectionsArr.push(
-      <p style={{ color: 'white' }}>{collections[i].title}</p>
+      <p className="collection-title">{collections[i].title}</p>
     );
   }
-  console.log('collectionsArr with p tag: ', collectionsArr);
+  // console.log('collectionsArr with p tag: ', collectionsArr);
 
-  return <>{collectionsArr}</>;
+  return <div className="collection-list-container">{collectionsArr}</div>;
 };
 
 export default ShowCollection;
