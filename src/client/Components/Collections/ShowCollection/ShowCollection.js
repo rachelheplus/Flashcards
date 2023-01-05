@@ -43,23 +43,6 @@ const ShowCollection = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // for (let i = 0; i < collections.length; i++) {
-  //   collectionsArr.push(
-  //     <Link to="/home" style={{ textDecoration: 'none' }}>
-  //       <button className="collection-title">{collections[i].title}</button>
-  //     </Link>
-  //   );
-  // }
-
-  // console.log('global state: ', collectionArr);
-
-  // for (let i = 0; i < collections.length; i++) {
-  //   collectionsArr.push(
-  //     <Link to="/home" style={{ textDecoration: 'none' }}>
-  //       <button className="collection-title">{collections[i].title}</button>
-  //     </Link>
-  //   );
-  // }
   return (
     <div className="collection-list-container">
       {collectionArr.map((collection) => (
