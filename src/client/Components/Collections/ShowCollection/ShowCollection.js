@@ -1,18 +1,26 @@
 import './ShowCollection.scss';
 
+import {
+  setCollectionArr,
+  setCollection_id,
+  setCollection_title,
+} from '../../../Redux/slices/collectionSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 const ShowCollection = () => {
   // api/collections
   // post
   // send only user_id
   const user_id = useSelector((state) => state.user.user_id);
+  const collectionArr = useSelector((state) => state.collection.collectionArr);
+
   const [collections, setCollections] = useState([]);
   const collectionsArr = [];
+  const dispatch = useDispatch();
 
   useEffect(() => {
     //fetch all the collections of the logged in user
@@ -29,6 +37,7 @@ const ShowCollection = () => {
     fetch(url, requestOption)
       .then((res) => res.json())
       .then((data) => {
+        dispatch(setCollectionArr(data));
         setCollections(data);
       })
       .catch((err) => console.log(err));
@@ -41,10 +50,22 @@ const ShowCollection = () => {
       </Link>
     );
   }
+
+  console.log('global state: ', collectionArr);
+
+  for (let i = 0; i < collections.length; i++) {
+    collectionsArr.push(
+      <Link to="/home" style={{ textDecoration: 'none' }}>
+        <button className="collection-title">{collections[i].title}</button>
+      </Link>
+    );
+  }
   return (
-    <>
-      <div className="collection-list-container">{collectionsArr}</div>
-    </>
+    <div className="collection-list-container">
+      {collectionArr.map((collection) => (
+        <button className="collection-title">{collection.title}</button>
+      ))}
+    </div>
   );
 };
 

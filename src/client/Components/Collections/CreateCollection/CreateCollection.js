@@ -1,13 +1,23 @@
 import './CreateCollection.scss';
 
 import React, { useState } from 'react';
+import {
+  setCollectionArr,
+  setCollection_id,
+  setCollection_title,
+} from '../../../Redux/slices/collectionSlice';
 
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CreateCollection = () => {
   const [title, setTitle] = useState('');
+
   const user_id = useSelector((state) => state.user.user_id);
+  const collectionArr = useSelector((state) => state.collection.collectionArr);
+
+  const dispatch = useDispatch();
 
   function handleCreate() {
     const url = 'http://localhost:8080/api/collections/create';
@@ -21,7 +31,10 @@ const CreateCollection = () => {
     };
     fetch(url, create)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        dispatch(setCollectionArr([...collectionArr, data]));
+      })
       .catch((err) => console.log(err));
   }
 
