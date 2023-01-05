@@ -12,7 +12,7 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'test') {
   PG_URI = `postgres://iaesejsb:${process.env.DB_TEST_PASSWORD}@hansken.db.elephantsql.com/iaesejsb`;
 }
 
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 // This pools multiple db accesses into one request
 const pool = new Pool({
   connectionString: PG_URI,
