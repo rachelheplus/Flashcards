@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import CollectionsDisplay from './Components/Collections/CollectionsDisplay/CollectionsDisplay';
 import CreateCard from './Components/CreateCard/CreateCard';
-import FlashCard from './Components/ShowCard/FlashCards';
+import FlashCard from './Components/FlashCard/FlashCards';
 import Home from './Components/Home/Home';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Navbar from './Components/Navbar/Navbar';
