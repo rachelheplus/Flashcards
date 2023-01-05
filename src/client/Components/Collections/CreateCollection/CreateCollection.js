@@ -1,11 +1,15 @@
 import './CreateCollection.scss';
 
 import React, { useState } from 'react';
+import {
+  setCollectionArr,
+  setCollection_id,
+  setCollection_title,
+} from '../../../Redux/slices/collectionSlice';
 
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { setCollectionArr, setCollection_id, setCollection_title } from '../../Redux/slices/collectionSlice';
-import { useDispatch } from 'react-redux';
 
 const CreateCollection = () => {
   const [title, setTitle] = useState('');
@@ -29,7 +33,8 @@ const CreateCollection = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        dispatch(setCollectionArr([...collectionArr,data]))})
+        dispatch(setCollectionArr([...collectionArr, data]));
+      })
       .catch((err) => console.log(err));
   }
 

@@ -4,7 +4,7 @@ import {
   setCollectionArr,
   setCollection_id,
   setCollection_title,
-} from '../../Redux/slices/collectionSlice';
+} from '../../../Redux/slices/collectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
