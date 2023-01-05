@@ -34,10 +34,9 @@ describe('db.js SQL test', () => {
       expect(result.difficulty).toBe(0);
       expect(result.hints).toBe('hints');
       expect(typeof result._id).toBe('number');
-      expect(result).not.toBeInstanceOf(Error);
     });
 
-    xit('rejects a new card with an invalid entry', async () => {
+    it('rejects a new card with an invalid entry', async () => {
       const fakeCard = {
         title: 13,
         difficulty: 'ohHi',
@@ -45,8 +44,8 @@ describe('db.js SQL test', () => {
       };
 
       // const result = await obj.createCard(fakeCard);
-      expect(async () => await obj.createCard(fakeCard)).toThrow(
-        'rejects a new card with an invalid entry',
+      await expect(obj.createCard(fakeCard)).rejects.toThrow(
+        'In db.js:obj.createCard',
       );
     });
 
@@ -72,7 +71,6 @@ describe('db.js SQL test', () => {
       expect(result.difficulty).toBe(1);
       expect(result.hints).toBe('newHints');
       expect(typeof result._id).toBe('number');
-      expect(result).not.toBeInstanceOf(Error);
     });
 
     it('reads all cards in db', async () => {
