@@ -4,6 +4,7 @@ import './CreateCard.scss';
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const CreateCard = () => {
   const [front, setFront] = useState('');
@@ -11,10 +12,12 @@ const CreateCard = () => {
   const [title, setTitle] = useState('');
   const navigate = useNavigate();
 
+  const collection_id = useSelector((state) => state.collection.collection_id);
+
   function cb() {
     fetch('http://localhost:8080/api/cards', {
       method: 'POST',
-      body: JSON.stringify({ front, back, title }),
+      body: JSON.stringify({ collection_id, front, back, title }),
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
