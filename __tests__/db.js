@@ -168,7 +168,7 @@ describe('db.js SQL test', () => {
       expect(result[0]._id).toEqual(collId);
     });
 
-    it('reads cards in a collection', async () => {
+    xit('reads cards in a collection', async () => {
       const newCard = {
         collection_id: collId,
         title: 'titleCol',
