@@ -27,8 +27,7 @@ const ShowCollection = () => {
     fetch(url, requestOption)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setCollections((collections) => [...collections, data]);
+        setCollections(data);
       })
       .catch((err) => console.log(err));
   }, []);
