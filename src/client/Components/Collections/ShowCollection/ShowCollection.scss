@@ -1,16 +1,34 @@
 .collection-list-container {
-    // background-color: blue;
     background-color: var(--green-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1em 0.5em;
+    padding: 1em 0;
+    gap: 2em;
+
     .collection-title {
         min-height: 2em;
-        margin: 2em;
+        min-width: 15em;
         border-radius: 0.5em;
+        font-style: to-upper-case;
 
         line-height: 2em;
-        font-size: 1.5em;
+        font-size: 1.25em;
         text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
         
         background-color: var(--lightGray-color);
         color: rgb(var(--green-bg));
+        box-shadow: 0 2px 5px var(--dark-bg);
+
+        cursor: pointer;
+    }
+
+    .collection-title:hover {
+        background-color: var(--dark-bg);
+        color: var(--primary-color);
+        font-weight: 700;
     }
 }

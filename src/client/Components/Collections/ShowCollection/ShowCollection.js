@@ -2,6 +2,7 @@ import './ShowCollection.scss';
 
 import { useEffect, useState } from 'react';
 
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { useSelector } from 'react-redux';
 
@@ -29,16 +30,17 @@ const ShowCollection = () => {
       .then((res) => res.json())
       .then((data) => {
         setCollections(data);
-
-        for (let i = 0; i < collections.length; i++) {
-          collectionsArr.push(
-            <button className="collection-title">{collections[i].title}</button>
-          );
-        }
       })
       .catch((err) => console.log(err));
   }, []);
 
+  for (let i = 0; i < collections.length; i++) {
+    collectionsArr.push(
+      <Link to="/home" style={{ textDecoration: 'none' }}>
+        <button className="collection-title">{collections[i].title}</button>
+      </Link>
+    );
+  }
   return (
     <>
       <div className="collection-list-container">{collectionsArr}</div>

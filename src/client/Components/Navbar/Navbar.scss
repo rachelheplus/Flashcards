@@ -1,15 +1,18 @@
 .nav {
   background-color: rgba(var(--green-bg), 0.8);
+  
   min-height: 3em;
   min-width: 340px;
+  
   padding: 1em;
+  // font-size: 1em;
+
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center; 
 
   .nav-title-container {
-    // display: flex;
     .nav-title {
       font-size: 1em;
     }
@@ -17,5 +20,21 @@
 
   .logout-button {
     font-size: 1em;
+  }
+}
+
+
+@media screen and (min-width: 425px) {
+  .nav {
+    .nav-title-container {
+      // display: flex;
+      .nav-title {
+        font-size: 1.25em;
+      }
+    }
+
+    .logout-button {
+      font-size: 1.25em;
+    }
   }
 }
