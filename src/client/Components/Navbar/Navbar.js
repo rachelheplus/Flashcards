@@ -31,10 +31,10 @@ const Navbar = ({ leftItems }) => {
             })}
           </div>
 
-          <div className="logout-button">
+          <div className="logout-button-container">
             {email ? (
               <a
-                className="card-button"
+                className="card-button logout-button"
                 href="http://localhost:8080/auth/logout"
               >
                 logout

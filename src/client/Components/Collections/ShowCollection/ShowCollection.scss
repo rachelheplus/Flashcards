@@ -1,7 +1,16 @@
 .collection-list-container {
-    color: var(--primary-color);
-    background-color: (--lightGray-color);
-    // .collection-title {
+    // background-color: blue;
+    background-color: var(--green-bg);
+    .collection-title {
+        min-height: 2em;
+        margin: 2em;
+        border-radius: 0.5em;
+
+        line-height: 2em;
+        font-size: 1.5em;
+        text-align: center;
         
-    // }
+        background-color: var(--lightGray-color);
+        color: rgb(var(--green-bg));
+    }
 }
