@@ -11,7 +11,7 @@ const ShowCollection = () => {
   // send only user_id
   const user_id = useSelector((state) => state.user.user_id);
   const [collections, setCollections] = useState([]);
-
+  const collectionsArr = [];
   useEffect(() => {
     //fetch all the collections of the logged in user
     const url = 'http://localhost:8080/api/collections';
@@ -28,19 +28,23 @@ const ShowCollection = () => {
       .then((res) => res.json())
       .then((data) => {
         setCollections(data);
+        
+        for (let i = 0; i < collections.length; i++) {
+          collectionsArr.push(
+            <button style={{ color: 'white' }}>{collections[i].title}</button>
+          );
+        }
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const collectionsArr = [];
-  for (let i = 0; i < collections.length; i++) {
-    collectionsArr.push(
-      <p style={{ color: 'white' }}>{collections[i].title}</p>
-    );
-  }
-  console.log('collectionsArr with p tag: ', collectionsArr);
-
-  return <>{collectionsArr}</>;
+  return (
+    <>
+      <div className='Collections'>
+        {collectionsArr}
+      </div>
+    </>
+  )
 };
 
 export default ShowCollection;
