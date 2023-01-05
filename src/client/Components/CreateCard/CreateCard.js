@@ -39,6 +39,7 @@ const CreateCard = () => {
         onChange={(e) => setback(e.target.value)}
         placeholder="Enter Answer Here"
       ></input>
+      
       <button className="card-button add-card-btn" onClick={cb}>
         Add Card <span>&#43;</span>
       </button>
