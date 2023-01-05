@@ -66,7 +66,7 @@ router.get('/cards', async (req, res, next) => {
 router.post('/cards', async (req, res, next) => {
   try {
     // sanitize post data
-    const { title, front, back, difficulty, hints, scheduled } = req.body;
+    const { title, front, back, difficulty, hints, scheduled, collection_id } = req.body;
     const data = {
       title,
       front,
@@ -74,6 +74,7 @@ router.post('/cards', async (req, res, next) => {
       difficulty,
       hints,
       scheduled,
+      collection_id,
     };
 
     console.log('creating data: ', data);

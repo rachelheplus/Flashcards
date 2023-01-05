@@ -46,11 +46,12 @@ obj.createCard = async (args) => {
       Number(args['difficulty']),
       args['hints'],
       args['scheduled'] === undefined ? formattedTime : args['scheduled'], // args['scheduled'] should have format 2022-12-28 12:34:56
+      args['collection_id'],
     ];
 
     const sql = `INSERT INTO Cards
     (title, front, back, difficulty, hints, scheduled)
-    VALUES ($1, $2, $3, $4, $5, $6)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;`;
     // execute sql command
     const data = await pool.query(sql, arr);
