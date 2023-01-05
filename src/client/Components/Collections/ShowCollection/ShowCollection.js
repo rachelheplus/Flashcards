@@ -1,10 +1,14 @@
 import './ShowCollection.scss';
 
+import {
+  setCollectionArr,
+  setCollection_id,
+  setCollection_title,
+} from '../../Redux/slices/collectionSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCollectionArr, setCollection_id, setCollection_title } from '../../Redux/slices/collectionSlice';
 
 const ShowCollection = () => {
   // api/collections
@@ -14,7 +18,7 @@ const ShowCollection = () => {
   const collectionArr = useSelector((state) => state.collection.collectionArr);
 
   const [collections, setCollections] = useState([]);
-  
+  const collectionsArr = [];
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,14 +36,12 @@ const ShowCollection = () => {
     fetch(url, requestOption)
       .then((res) => res.json())
       .then((data) => {
-        dispatch(setCollectionArr(data))
+        dispatch(setCollectionArr(data));
         setCollections(data);
       })
       .catch((err) => console.log(err));
-
-
   }, []);
-  // const collectionsArr = [];
+
   // for (let i = 0; i < collections.length; i++) {
   //   collectionsArr.push(
   //     <button style={{ color: 'white' }}>{collections[i].title}</button>
@@ -47,14 +49,13 @@ const ShowCollection = () => {
   // }
   console.log('global state: ', collectionArr);
 
-
   return (
-    <>
-      <div className='Collections'>
-        {collectionArr.map((collection) => (<button >{collection.title}</button>))}
-      </div>
-    </>
-  )
+    <div className="collection-list-container">
+      {collectionArr.map((collection) => (
+        <button className="collection-title">{collection.title}</button>
+      ))}
+    </div>
+  );
 };
 
 export default ShowCollection;

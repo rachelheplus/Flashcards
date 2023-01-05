@@ -6,7 +6,7 @@ import React, { useEffect } from 'react';
 import { setEmail, setUser_id } from './Redux/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
-import CollectionsDisplay from './Components/CollectionsDisplay/CollectionsDisplay.jsx';
+import CollectionsDisplay from './Components/Collections/CollectionsDisplay/CollectionsDisplay';
 import CreateCard from './Components/CreateCard/CreateCard';
 import FlashCard from './Components/ShowCard/FlashCards';
 import Home from './Components/Home/Home';

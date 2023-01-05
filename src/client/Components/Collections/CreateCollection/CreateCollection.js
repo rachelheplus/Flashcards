@@ -35,13 +35,22 @@ const CreateCollection = () => {
 
   return (
     <>
-      <div>
-        <label htmlFor="Title">Title:</label>
-        <input
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Enter Collection Title Here"
-        ></input>
-        <button onClick={handleCreate}>Create New Collection</button>
+      <div className="create-collection-container">
+        <div className="create-collection-input">
+          <label htmlFor="Title">Title:</label>
+          <input
+            className="create-collection-title"
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter Collection Title Here"
+          ></input>
+        </div>
+
+        <button
+          className="card-button collection-button"
+          onClick={handleCreate}
+        >
+          Create New Collection
+        </button>
       </div>
     </>
   );
