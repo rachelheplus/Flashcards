@@ -64,7 +64,6 @@ obj.createCard = async (args) => {
 obj.updateCard = async (args) => {
   try {
     // console.log('checking for update');
-    // console.log(args);
     const selectUserSQL = ` SELECT * FROM Cards WHERE _id=$1`;
     const data1 = await pool.query(selectUserSQL, [Number(args['_id'])]);
     console.log('data1', data1.rows[0]);
@@ -82,7 +81,6 @@ obj.updateCard = async (args) => {
         ? data1.rows[0].scheduled
         : args['scheduled'],
     ];
-
     const updateUserSQL = ` UPDATE Cards
     SET title = $2,
     front = $3,
@@ -130,6 +128,7 @@ obj.addUser = async (args) => {
 };
 
 obj.getUser = async (sub) => {
+  console.log('sub in db: ', sub);
   try {
     const sql = `SELECT *
     FROM GoogleUserInfo
@@ -155,11 +154,8 @@ obj.createCollection = async (args) => {
       .toISOString()
       .slice(0, 19)
       .replace('T', ' ');
-  
-    const arr = [
-      args['user_id'],
-      args['title'],
-    ];
+
+    const arr = [args['user_id'], args['title']];
 
     const sql = `INSERT INTO Collections
     (user_id, title)
@@ -195,6 +191,6 @@ obj.readCollectionCards = async (collection_id) => {
   } catch (err) {
     throw new Error(`In db:js:obj.readCollectionCards: ${err.message}`);
   }
-}
+};
 
 module.exports = obj;
