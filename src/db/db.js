@@ -50,7 +50,7 @@ obj.createCard = async (args) => {
     ];
 
     const sql = `INSERT INTO Cards
-    (title, front, back, difficulty, hints, scheduled)
+    (title, front, back, difficulty, hints, scheduled, collection_id)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;`;
     // execute sql command
@@ -193,5 +193,17 @@ obj.readCollectionCards = async (collection_id) => {
     throw new Error(`In db:js:obj.readCollectionCards: ${err.message}`);
   }
 };
+
+obj.deleteCollection = async (collection_id) => {
+  try {
+    const sql1 = `DELETE FROM Cards WHERE collection_id=$1;`
+    await pool.query(sql1, [collection_id]);
+    const sql2 = `DELETE FROM Collections WHERE _id=$1;`;
+    const data = await pool.query(sql2, [collection_id]);
+    return data.rows[0];
+  } catch (err) {
+    throw new Error(`In db:js:obj.deleteCollection: ${err.message}`)
+  }
+}
 
 module.exports = obj;

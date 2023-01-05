@@ -132,7 +132,7 @@ router.post('/collections/create', async (req, res, next) => {
     res.status(200).json(row);
     console.log('created collection successfully');
     return next();
-  } catch(err) {
+  } catch (err) {
     next({
       log: 'error creating collection',
       status: 500,
@@ -147,7 +147,7 @@ router.post('/collections', async (req, res, next) => {
     const row = await db.readUserCollections(user_id);
     res.status(200).json(row);
     console.log('read collections successfully');
-  } catch(err) {
+  } catch (err) {
     next({
       log: 'error getting collections',
       status: 500,
@@ -159,14 +159,33 @@ router.post('/collections', async (req, res, next) => {
 router.post('/collections/cards', async (req, res, next) => {
   try {
     const { collection_id } = req.body;
+    console.log('REQ.BODY FROM COLLECTIONS/CARDS', req.body);
+    // console.log('REQUEST OBJECT: ', req);
     const row = await db.readCollectionCards(collection_id);
     res.status(200).json(row);
     console.log('read collection cards successfully');
-  } catch(err) {
+  } catch (err) {
     next({
       log: 'error getting cards from collection',
       status: 500,
-      message: { err, err },
+      message: { err },
+    });
+  }
+})
+
+router.delete('/collections', async (req, res, next) => {
+  try {
+    const { collection_id, user_id } = req.body;
+    const row = await db.deleteCollection(collection_id);
+    console.log('deleted collection successfully');
+    const newColl = await db.readUserCollections(user_id);
+    console.log('read user collection after deleted successfully');
+    res.status(200).json(newColl);
+  } catch (err) {
+    next({
+      log: 'error deleting collection',
+      status: 500,
+      message: { err },
     });
   }
 })

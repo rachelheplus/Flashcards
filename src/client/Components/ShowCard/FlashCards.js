@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 
 const FlashCard = () => {
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const [cardData, setCardData] = useState({});
   const [nextCard, setnextCard] = useState({});
   const [showFront, setShowFront] = useState(true);
@@ -23,7 +23,7 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/${id}`,
     }).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       setCardData(res.data);
     });
   }, []);
@@ -35,8 +35,8 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/nextCard/${id}`,
     }).then((res) => {
-      console.log(res.data);
-      console.log('checking for res.data', res.data);
+      // console.log(res.data);
+      // console.log('checking for res.data', res.data);
       setnextCard(res.data);
     });
   }, []);
@@ -47,7 +47,7 @@ const FlashCard = () => {
       withCredentials: true,
       url: `http://localhost:8080/api/cards/${id}`,
     }).then((res) => {
-      window.location.href = `/library`;
+      navigate(`/cards`);
     });
   };
 
