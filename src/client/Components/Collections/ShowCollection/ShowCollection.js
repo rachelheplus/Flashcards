@@ -1,5 +1,4 @@
 import './ShowCollection.scss';
-import React from 'react';
 
 import {
   setCollectionArr,
@@ -7,11 +6,11 @@ import {
   setCollection_title,
 } from '../../../Redux/slices/collectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { v4 as uuid } from 'uuid';
 
 import { Link } from 'react-router-dom';
-
+import React from 'react';
+import { useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 
 const ShowCollection = () => {
   // api/collections
@@ -46,12 +45,15 @@ const ShowCollection = () => {
 
   // console.log('global state: ', collectionArr);
 
-  const handleClick = e => {
+  const handleClick = (e) => {
     dispatch(setCollection_id(e.target.value));
-  }
+  };
 
-  const handleDelete = e => {
-    console.log('when clicking delete we should get collection_id', e.target.value);
+  const handleDelete = (e) => {
+    console.log(
+      'when clicking delete we should get collection_id',
+      e.target.value
+    );
     dispatch(setCollection_id(+e.target.value));
     const url = 'http://localhost:8080/api/collections';
     const requestOption = {
@@ -65,27 +67,34 @@ const ShowCollection = () => {
         'Content-Type': 'application/json',
       },
     };
-    console.log('inside handleDelete:', collection_id)
+    console.log('inside handleDelete:', collection_id);
     fetch(url, requestOption)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
         //probably we need to update some kind of state here
         dispatch(setCollectionArr(data));
       })
-      .catch(err => console.log(err))
-
-
-  }
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="collection-list-container">
       {collectionArr.map((collection) => (
         <div>
-          <Link to='/cards' style={{ textDecoration: 'none' }}>
-            <button className="collection-title" value={collection._id} onClick={handleClick} key={uuid()}>{collection.title}</button>
+          <Link to="/cards" style={{ textDecoration: 'none' }}>
+            <button
+              className="collection-title"
+              value={collection._id}
+              onClick={handleClick}
+              key={uuid()}
+            >
+              {collection.title}
+            </button>
           </Link>
-          <button value={collection._id} onClick={handleDelete} key={uuid()}>Delete</button>
+          <button value={collection._id} onClick={handleDelete} key={uuid()}>
+            Delete
+          </button>
         </div>
       ))}
     </div>

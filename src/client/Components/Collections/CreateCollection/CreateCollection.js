@@ -42,7 +42,9 @@ const CreateCollection = () => {
     <>
       <div className="create-collection-container">
         <div className="create-collection-input">
-          <label htmlFor="Title">Title:</label>
+          <label className="title" htmlFor="Title">
+            Title:
+          </label>
           <input
             className="create-collection-title"
             onChange={(e) => setTitle(e.target.value)}
