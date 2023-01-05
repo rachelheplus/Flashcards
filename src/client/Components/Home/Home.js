@@ -7,8 +7,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 
-// import '../../styles.scss';
-
 const Home = () => {
   const [arrCards, setArrCards] = useState([]);
 
