@@ -1,4 +1,5 @@
 import './ShowCollection.scss';
+import React from 'react';
 
 import {
   setCollectionArr,
@@ -6,10 +7,11 @@ import {
   setCollection_title,
 } from '../../../Redux/slices/collectionSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import { Link } from 'react-router-dom';
-import React from 'react';
+
 
 const ShowCollection = () => {
   // api/collections
@@ -17,9 +19,7 @@ const ShowCollection = () => {
   // send only user_id
   const user_id = useSelector((state) => state.user.user_id);
   const collectionArr = useSelector((state) => state.collection.collectionArr);
-
-  const [collections, setCollections] = useState([]);
-  const collectionsArr = [];
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,32 +38,20 @@ const ShowCollection = () => {
       .then((res) => res.json())
       .then((data) => {
         dispatch(setCollectionArr(data));
-        setCollections(data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  for (let i = 0; i < collections.length; i++) {
-    collectionsArr.push(
-      <Link to="/home" style={{ textDecoration: 'none' }}>
-        <button className="collection-title">{collections[i].title}</button>
-      </Link>
-    );
-  }
-
   console.log('global state: ', collectionArr);
 
-  for (let i = 0; i < collections.length; i++) {
-    collectionsArr.push(
-      <Link to="/home" style={{ textDecoration: 'none' }}>
-        <button className="collection-title">{collections[i].title}</button>
-      </Link>
-    );
+  const handleClick = e => {
+    console.log('should get the collection_id when clicking its button', e.target.value)
   }
+
   return (
     <div className="collection-list-container">
       {collectionArr.map((collection) => (
-        <button className="collection-title">{collection.title}</button>
+        <button className="collection-title" value={collection._id} onClick={handleClick} key={uuid()}>{collection.title}</button>
       ))}
     </div>
   );
