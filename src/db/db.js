@@ -12,7 +12,7 @@ obj.readCard = async (id) => {
     // TODO: validate that there is only one row
     return data.rows[0];
   } catch (err) {
-    throw `In db.js:obj.readCard: ${err.message}`;
+    throw new Error(`In db.js:obj.readCard: ${err.message}`);
   }
 };
 
@@ -24,7 +24,7 @@ obj.readAllCards = async () => {
     const data = await pool.query(sql);
     return data.rows;
   } catch (err) {
-    throw `In db.js:obj.readAllCards: ${err.message}`;
+    throw new Error(`In db.js:obj.readAllCards: ${err.message}`);
   }
 };
 
@@ -56,7 +56,7 @@ obj.createCard = async (args) => {
     const data = await pool.query(sql, arr);
     return data.rows[0];
   } catch (err) {
-    throw `In db.js:obj.createCard: ${err.message}`;
+    throw new Error(`In db.js:obj.createCard: ${err.message}`);
   }
 };
 
@@ -94,7 +94,7 @@ obj.updateCard = async (args) => {
 
     const data2 = await pool.query(updateUserSQL, arr);
   } catch (err) {
-    throw `In db.js: obj.updateCard: ${err.message}`;
+    throw new Error(`In db.js: obj.updateCard: ${err.message}`);
   }
 };
 
@@ -105,7 +105,7 @@ obj.deleteCard = async (id) => {
     const data = await pool.query(sql, [id]);
     return data.rows[0];
   } catch (err) {
-    throw `In db.js: obj.deleteCard: ${err.message}`;
+    throw new Error(`In db.js: obj.deleteCard: ${err.message}`);
   }
 };
 
@@ -141,7 +141,7 @@ obj.getUser = async (sub) => {
       return data.rows[0];
     } else {
       console.warn('more than one user found');
-      throw '';
+      throw new Error('');
     }
   } catch {
     console.log('crash in db.getUser');
@@ -169,7 +169,7 @@ obj.createCollection = async (args) => {
     const data = await pool.query(sql, arr);
     return data.rows[0];
   } catch (err) {
-    throw `In db.js:obj.createCollection': ${err}`;
+    throw new Error(`In db.js:obj.createCollection': ${err}`);
   }
 };
 
@@ -181,7 +181,7 @@ obj.readUserCollections = async (user_id) => {
     const data = await pool.query(sql, [user_id]);
     return data.rows;
   } catch (err) {
-    throw `In db:js:obj.readUserCollections: ${err.message}`;
+    throw new Error(`In db:js:obj.readUserCollections: ${err.message}`);
   }
 };
 
@@ -193,7 +193,7 @@ obj.readCollectionCards = async (collection_id) => {
     const data = await pool.query(sql, [collection_id]);
     return data.rows;
   } catch (err) {
-    throw `In db:js:obj.readCollectionCards: ${err.message}`;
+    throw new Error(`In db:js:obj.readCollectionCards: ${err.message}`);
   }
 }
 
