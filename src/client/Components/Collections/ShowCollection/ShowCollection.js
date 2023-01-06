@@ -92,7 +92,12 @@ const ShowCollection = () => {
               {collection.title}
             </button>
           </Link>
-          <button className="delete-collection" value={collection._id} onClick={handleDelete} key={uuid()}>
+          <button
+            className="card-button delete-collection-btn"
+            value={collection._id}
+            onClick={handleDelete}
+            key={uuid()}
+          >
             Delete
           </button>
         </div>

@@ -9,7 +9,7 @@
 
     .collection-title {
         min-height: 2em;
-        min-width: 15em;
+        min-width: 8em;
         border-radius: 0.5em;
         font-style: to-upper-case;
 
@@ -56,6 +56,11 @@
         color: var(--primary-color);
         font-weight: 700;
     }
+
+    .delete-collection-btn {
+        font-size: 0.85em;
+        margin-left: 0.55em;
+    }
 }
 
 
@@ -63,13 +68,12 @@
     .collection-list-container {
         .collection-title {
             min-height: 2.5em;
-            min-width: 18em;
+            min-width: 15em;
             font-weight: 700;
         }
-        .delete-collection {
-            min-height: 1.5em;
-            min-width: 10em;
-            font-weight: 500; 
+
+        .delete-collection-btn {
+            margin-left: 0.65em;
         }
     }
 }
@@ -78,13 +82,11 @@
     .collection-list-container {
         .collection-title {
             min-height: 2.5em;
-            min-width: 22em;
+            min-width: 18em;
             font-weight: 700;
         }
-        .delete-collection {
-            min-height: 1.5em;
-            min-width: 10em;
-            font-weight: 500; 
+        .delete-collection-btn {
+            margin-left: 0.95em;
         }
     }
 }
