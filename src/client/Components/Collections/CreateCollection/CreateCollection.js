@@ -1,18 +1,20 @@
 import './CreateCollection.scss';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   setCollectionArr,
   setCollection_id,
   setCollection_title,
 } from '../../../Redux/slices/collectionSlice';
 
+import e from 'cors';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const CreateCollection = () => {
   const [title, setTitle] = useState('');
+  const ref = useRef(null);
 
   const user_id = useSelector((state) => state.user.user_id);
   const collectionArr = useSelector((state) => state.collection.collectionArr);
@@ -36,6 +38,8 @@ const CreateCollection = () => {
         dispatch(setCollectionArr([...collectionArr, data]));
       })
       .catch((err) => console.log(err));
+
+    ref.current.value = '';
   }
 
   return (
@@ -46,6 +50,8 @@ const CreateCollection = () => {
             Title:
           </label>
           <input
+            ref={ref}
+            id="create-collection-title"
             className="create-collection-title"
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter Collection Title Here"
