@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
+import { useSelector } from 'react-redux';
 
 const FlashCard = () => {
   const { id } = useParams();
@@ -14,6 +15,9 @@ const FlashCard = () => {
   const [cardData, setCardData] = useState({});
   const [nextCard, setnextCard] = useState({});
   const [showFront, setShowFront] = useState(true);
+  
+
+  const collection_id = useSelector((state) => state.collection.collection_id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,8 +35,9 @@ const FlashCard = () => {
   useEffect(() => {
     // we cannot use async/await in useEffect without wrapping in outer function
     const response = axios({
-      method: 'get',
+      method: 'post',
       withCredentials: true,
+      data: {collection_id: collection_id},
       url: `http://localhost:8080/api/cards/nextCard/${id}`,
     }).then((res) => {
       // console.log(res.data);

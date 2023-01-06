@@ -2,12 +2,13 @@ const db = require('../db/db.js');
 const express = require('express');
 const router = express.Router();
 
-router.get('/cards/nextCard/:id', async (req, res, next) => {
+router.post('/cards/nextCard/:id', async (req, res, next) => {
   try {
     console.log('just checking');
 
     const _id = req.params.id;
-    const row = await db.readAllCards();
+    const { collection_id } = req.body;
+    const row = await db.readCollectionCards(collection_id);
     const ids = row.map((element) => {
       return element._id;
     });
