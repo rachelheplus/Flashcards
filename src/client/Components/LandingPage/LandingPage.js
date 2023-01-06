@@ -1,31 +1,28 @@
+import './LandingPage.scss';
+
 import React from 'react';
-import landingPageImage from './animation.png';
-import styles from './LandingPage.module.css';
+import landingPageImage from '../../assets/animation.png';
 
 const LandingPage = () => {
   return (
-    <>
-      <div className="container d-flex justify-content-center text-center vertical-center bg-warning">
-        <div className="row  align-middle">
-          <div id={styles.divContainer} className="col">
-            <div className={styles.width500}>
-              "Learning is the key to unlocking your full potential and
-              achieving greatness."
-            </div>
-            <div>
-              <img id={styles.landingImage} src={landingPageImage} />
-            </div>
-          </div>
-          <a
-            className="col"
-            id={styles.LandingPageLogin}
-            href={`http://localhost:8080/auth/google`}
-          >
-            log in
-          </a>
+    <div className="landing-container">
+      <div className="text-image-container">
+        <div className="text-container">
+          "Learning is the key to unlocking your full potential and achieving
+          greatness."
+        </div>
+        <div className="image-container">
+          <img className="landing-image" alt="" src={landingPageImage} />
         </div>
       </div>
-    </>
+      <a
+        className="card-button login-button"
+        id="landing-page-login"
+        href={`http://localhost:8080/auth/google`}
+      >
+        Login
+      </a>
+    </div>
   );
 };
 

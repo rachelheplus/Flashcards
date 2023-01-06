@@ -4,7 +4,7 @@ Create a free postgresql database at:
 https://www.elephantsql.com/
 
 Grab the url of your new database so you can access it from the command line in your terminal.
-
+ 
 # Useful SQL commands
 
 ## See tables that you created

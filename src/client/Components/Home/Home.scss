@@ -1,0 +1,32 @@
+.card-holder-container {
+  margin: 1em;
+  .create-new-card {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 1.5em;
+  }
+
+  .card-container {
+    // margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+}
+
+@media screen and (min-width: 550px) {
+
+}
+
+// @media screen and (min-width: 625px) {
+  
+// }
+// @media screen and (min-width: 700px) {
+  
+// }
+// @media screen and (min-width: 900px) {
+  
+// }

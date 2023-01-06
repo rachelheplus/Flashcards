@@ -4,10 +4,13 @@ const apiRouter = require('./apiRouter.js');
 const authRouter = require('./authRouter.js');
 const passport = require('passport');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const session = require('express-session'); // required for oauth session
 
-const { SESSION_SECRET } = require('../../secrets.js');
+const { SESSION_SECRET } = process.env;
 const app = express();
 const PORT = 8080;
 

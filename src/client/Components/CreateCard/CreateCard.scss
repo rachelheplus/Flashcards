@@ -1,0 +1,45 @@
+.new-card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1em;
+  margin: 2em 1em;
+  padding: 2em 0;
+  background-color: var(--hex-green-bg);
+  gap: 1em;
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  input {
+    min-height: 3em;
+    width: 70%;
+    background-color: var(--p-light-bg);
+    text-align: center;
+    border-radius: 1em;
+  }
+
+
+  input:focus {
+    outline: 3px solid var(--light-bg);
+  }
+  // .create-card-title {
+    // margin-top: 100px;
+  // }
+
+  // .card-front {}
+
+  // .card-back {}
+
+  .add-card-btn {
+    font-size: 1em;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .new-card-container {
+    max-width: 650px;
+    margin: 2em auto;
+  }
+}

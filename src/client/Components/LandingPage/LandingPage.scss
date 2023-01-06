@@ -1,0 +1,136 @@
+.landing-container {
+  background-color: var(--dark-bg);
+  border-radius: 1em;
+  min-width: 350px;
+  // min-height: fit-content;
+  margin: 1.5em 0.5em;
+  padding-bottom: 2em;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  .text-image-container {
+    margin: 1em;
+    width: 90%;
+    height: 500px;
+    // border: 1px solid peachpuff;
+
+    .text-container {
+      font-family: var(--font-secondary);
+      font-size: 2em;
+      margin: 0.5em;
+    }
+
+    .image-container {
+      width: 325px;
+      height: 215px;
+      margin: 3em 0;
+
+      .landing-image {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .landing-container {
+    margin: 5.5em 1em;
+    text-align: center;
+    
+    .text-image-container {
+      width: 100%;
+      min-height: 600px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .image-container {
+        min-width: 370px;
+        min-height: 275px;
+        margin: auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .landing-container {
+    margin: 5.5em 1em;
+    text-align: center;
+    
+    .text-image-container {
+      width: 100%;
+      min-height: 600px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .image-container {
+        min-width: 550px;
+        min-height: 275px;
+        margin: auto;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 625px) {
+  .landing-container {
+    margin: 8em 2em;
+    .text-image-container {
+      .image-container {
+        min-width: 575px;
+        min-height: 360px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .landing-container {
+    margin: 6em 2em;
+    .text-image-container {
+      .image-container {
+        min-width: 600px;
+        min-height: 600px;
+      }
+    }
+
+    .login-button {
+      margin-top: 4em;
+    }
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .landing-container {
+    margin: 8em 2em;
+    .text-image-container {
+      .image-container {
+        min-width: 675px;
+        min-height: 600px;
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 900px) {
+  .landing-container {
+    margin: 8em 2em;
+    .text-image-container {
+      .image-container {
+        min-width: 750px;
+        min-height: 600px;
+      }
+    }
+  }
+}

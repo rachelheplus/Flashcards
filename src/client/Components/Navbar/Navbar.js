@@ -1,7 +1,9 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
+import './Navbar.scss';
+
 import { Link, useNavigate } from 'react-router-dom';
-import styles from './navbar.module.css';
+import React, { useEffect } from 'react';
+
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 
@@ -15,26 +17,31 @@ const Navbar = ({ leftItems }) => {
   return (
     <>
       {email && (
-        <div className={styles.row}>
-          <div className={`${styles.row}`}>
+        <div className="nav">
+          <div className="nav-title-container">
             {Object.entries(leftItems).map((e) => {
               const [title, url] = e;
               return (
-                <div className={styles.margin} key={uuid()}>
-                  <Link to={url}>{title}</Link>
-                </div>
+                <Link to={url} style={{ textDecoration: 'none' }}>
+                  <div className="card-button nav-title" key={uuid()}>
+                    {title}
+                  </div>
+                </Link>
               );
             })}
           </div>
 
-          <div className={styles.row}>
-            <div className={styles.margin}>
-              {email ? (
-                <a href='http://localhost:8080/auth/logout'>logout</a>
-              ) : (
-                <a href={`http://localhost:8080/auth/google`}>log in</a>
-              )}
-            </div>
+          <div className="logout-button-container">
+            {email ? (
+              <a
+                className="card-button logout-button"
+                href="http://localhost:8080/auth/logout"
+              >
+                logout
+              </a>
+            ) : (
+              <a href={`http://localhost:8080/auth/google`}>log in</a>
+            )}
           </div>
         </div>
       )}

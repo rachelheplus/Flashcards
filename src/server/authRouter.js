@@ -5,7 +5,7 @@ const passport = require('passport');
 
 router.get('/user', (req, res) => {
   // req.user is the parsed jwt containing user information
-  console.log('user info', req.user);
+  // console.log('user info', req.user);
   res.status(200).json(req.user ? req.user : null);
 });
 

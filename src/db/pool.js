@@ -1,10 +1,18 @@
 const path = require('path');
 const { Pool } = require('pg');
-const { DB_PASSWORD } = require(path.resolve(__dirname, '../../secrets.js'));
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 // TODO: move thi to secrets.js
-const PG_URI = `postgres://tekdpxxk:${DB_PASSWORD}@mahmud.db.elephantsql.com/tekdpxxk`;
+// const PG_URI = `postgres://hhhwvygk:${process.env.DB_PASSWORD}@hansken.db.elephantsql.com/hhhwvygk`;
+if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'test') {
+  PG_URI = `postgres://hhhwvygk:${process.env.DB_PASSWORD}@hansken.db.elephantsql.com/hhhwvygk`;
+} else {
+  PG_URI = `postgres://iaesejsb:${process.env.DB_TEST_PASSWORD}@hansken.db.elephantsql.com/iaesejsb`;
+}
 
+// console.log(process.env.NODE_ENV);
 // This pools multiple db accesses into one request
 const pool = new Pool({
   connectionString: PG_URI,

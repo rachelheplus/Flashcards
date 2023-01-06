@@ -2,6 +2,7 @@ const pool = require('./pool.js');
 
 const obj = {};
 
+//readCard is going to read info of a single flashcard
 obj.readCard = async (id) => {
   try {
     const sql = `SELECT *
@@ -11,10 +12,11 @@ obj.readCard = async (id) => {
     // TODO: validate that there is only one row
     return data.rows[0];
   } catch (err) {
-    throw `In db.js:obj.readCard: ${err.message}`;
+    throw new Error(`In db.js:obj.readCard: ${err.message}`);
   }
 };
 
+//readAllCards is going to read info of all cards in the database
 obj.readAllCards = async () => {
   try {
     const sql = `SELECT *
@@ -22,10 +24,11 @@ obj.readAllCards = async () => {
     const data = await pool.query(sql);
     return data.rows;
   } catch (err) {
-    throw `In db.js:obj.readAllCards: ${err.message}`;
+    throw new Error(`In db.js:obj.readAllCards: ${err.message}`);
   }
 };
 
+//createCard is going to create a new flashcard with provided arguments
 obj.createCard = async (args) => {
   try {
     // this is the current time in format 2022-12-28 12:34:56
@@ -37,75 +40,73 @@ obj.createCard = async (args) => {
 
     // parameterize sql arguments to prevent attacks
     const arr = [
-      Number(args['user_id']),
       args['title'],
       args['front'],
       args['back'],
       Number(args['difficulty']),
       args['hints'],
       args['scheduled'] === undefined ? formattedTime : args['scheduled'], // args['scheduled'] should have format 2022-12-28 12:34:56
+      args['collection_id'],
     ];
 
     const sql = `INSERT INTO Cards
-    (user_id, title, front, back, difficulty, hints, scheduled)
+    (title, front, back, difficulty, hints, scheduled, collection_id)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;`;
     // execute sql command
     const data = await pool.query(sql, arr);
     return data.rows[0];
   } catch (err) {
-    throw `In db.js:obj.createCard: ${err.message}`;
+    throw new Error(`In db.js:obj.createCard: ${err.message}`);
   }
 };
 
+//updateCard is to update specific flashcard info
 obj.updateCard = async (args) => {
   try {
-    // console.log('checking for update'); 
-    // console.log(args); 
+    // console.log('checking for update');
     const selectUserSQL = ` SELECT * FROM Cards WHERE _id=$1`;
     const data1 = await pool.query(selectUserSQL, [Number(args['_id'])]);
-    console.log('data1', data1.rows[0]); 
+    console.log('data1', data1.rows[0]);
 
     const arr = [
       Number(args['_id']),
-      args['user_id'] === undefined ? data1.rows[0].user_id : args['user_id'],
       args['title'] === undefined ? data1.rows[0].title : args['title'],
       args['front'] === undefined ? data1.rows[0].front : args['front'],
       args['back'] === undefined ? data1.rows[0].back : args['back'],
-      Number(args['difficulty']) === undefined ? data1.rows[0].difficulty : args['difficulty'],
+      Number(args['difficulty']) === undefined
+        ? data1.rows[0].difficulty
+        : args['difficulty'],
       args['hints'] === undefined ? data1.rows[0].hints : args['hints'],
-      args['scheduled'] === undefined ? data1.rows[0].scheduled : args['scheduled'],
+      args['scheduled'] === undefined
+        ? data1.rows[0].scheduled
+        : args['scheduled'],
     ];
-
     const updateUserSQL = ` UPDATE Cards
-    SET title = $3,
-    user_id = $2, 
-    front = $4,
-    back = $5,
-    difficulty = $6,
-    hints = $7,
-    scheduled = $8
+    SET title = $2,
+    front = $3,
+    back = $4,
+    difficulty = $5,
+    hints = $6,
+    scheduled = $7
     WHERE _id = $1`;
 
     const data2 = await pool.query(updateUserSQL, arr);
-
   } catch (err) {
-    throw `In db.js: obj.updateCard: ${err.message}`; 
+    throw new Error(`In db.js: obj.updateCard: ${err.message}`);
   }
-}
+};
 
+//deleleCard is to delete a flashcard by its id provided
 obj.deleteCard = async (id) => {
   try {
-
-    sql = `DELETE FROM Cards WHERE _id=$1 RETURNING *`; 
+    sql = `DELETE FROM Cards WHERE _id=$1 RETURNING *`;
     const data = await pool.query(sql, [id]);
-    return data.rows[0]; 
-
+    return data.rows[0];
   } catch (err) {
-    throw `In db.js: obj.deleteCard: ${err.message}`; 
+    throw new Error(`In db.js: obj.deleteCard: ${err.message}`);
   }
-
-}
+};
 
 obj.addUser = async (args) => {
   try {
@@ -128,8 +129,9 @@ obj.addUser = async (args) => {
 };
 
 obj.getUser = async (sub) => {
+  console.log('sub in db: ', sub);
   try {
-    const sql = `SELECT * 
+    const sql = `SELECT *
     FROM GoogleUserInfo
     WHERE GoogleUserInfo.sub=$1`;
     const data = await pool.query(sql, [sub]);
@@ -139,11 +141,69 @@ obj.getUser = async (sub) => {
       return data.rows[0];
     } else {
       console.warn('more than one user found');
-      throw '';
+      throw new Error('');
     }
   } catch {
     console.log('crash in db.getUser');
   }
 };
+
+obj.createCollection = async (args) => {
+  try {
+    const currentTime = new Date();
+    const formattedTime = currentTime
+      .toISOString()
+      .slice(0, 19)
+      .replace('T', ' ');
+
+    const arr = [args['user_id'], args['title']];
+
+    const sql = `INSERT INTO Collections
+    (user_id, title)
+    VALUES ($1, $2)
+    RETURNING *;`;
+
+    const data = await pool.query(sql, arr);
+    return data.rows[0];
+  } catch (err) {
+    throw new Error(`In db.js:obj.createCollection': ${err}`);
+  }
+};
+
+obj.readUserCollections = async (user_id) => {
+  try {
+    const sql = `SELECT *
+    from Collections
+    WHERE user_id=$1;`;
+    const data = await pool.query(sql, [user_id]);
+    return data.rows;
+  } catch (err) {
+    throw new Error(`In db:js:obj.readUserCollections: ${err.message}`);
+  }
+};
+
+obj.readCollectionCards = async (collection_id) => {
+  try {
+    const sql = `SELECT *
+    from Cards
+    WHERE collection_id=$1;`;
+    const data = await pool.query(sql, [collection_id]);
+    return data.rows;
+  } catch (err) {
+    throw new Error(`In db:js:obj.readCollectionCards: ${err.message}`);
+  }
+};
+
+obj.deleteCollection = async (collection_id) => {
+  try {
+    const sql1 = `DELETE FROM Cards WHERE collection_id=$1;`
+    await pool.query(sql1, [collection_id]);
+    const sql2 = `DELETE FROM Collections WHERE _id=$1;`;
+    const data = await pool.query(sql2, [collection_id]);
+    return data.rows[0];
+  } catch (err) {
+    throw new Error(`In db:js:obj.deleteCollection: ${err.message}`)
+  }
+}
 
 module.exports = obj;
