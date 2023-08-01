@@ -7,9 +7,10 @@ dotenv.config();
 // TODO: move thi to secrets.js
 // const PG_URI = `postgres://hhhwvygk:${process.env.DB_PASSWORD}@hansken.db.elephantsql.com/hhhwvygk`;
 if (!process.env.NODE_ENV || process.env.NODE_ENV !== 'test') {
-  PG_URI = `postgres://hhhwvygk:${process.env.DB_PASSWORD}@hansken.db.elephantsql.com/hhhwvygk`;
+  //Update to Rachel's ElephantSQL
+  PG_URI = `postgres://hajpfume:${process.env.DB_PASSWORD}@rajje.db.elephantsql.com/hajpfume`;
 } else {
-  PG_URI = `postgres://iaesejsb:${process.env.DB_TEST_PASSWORD}@hansken.db.elephantsql.com/iaesejsb`;
+  PG_URI = `postgres://wjqubxya:${process.env.DB_TEST_PASSWORD}@rajje.db.elephantsql.com/wjqubxya`;
 }
 
 // console.log(process.env.NODE_ENV);
